@@ -1,7 +1,14 @@
 import cv2 
 import time
 import glob
+import os
 from sending_email import send_email
+from threading import Thread
+
+def clean_folder():
+    images = glob.glob("images/*.png")
+    for image in images:
+        os.remove(image)
 
 video = cv2.VideoCapture(0)
 time.sleep(1)
@@ -32,7 +39,7 @@ while True:
         if rectangle.any():
            status = 1
            cv2.imwrite(f"images/{count}.png", frame)
-           count =+ 1
+           count = count + 1
            all_image = glob.glob("images/*.png")
            index = int(len(all_image) / 2)
            print(index)
@@ -41,9 +48,14 @@ while True:
 
     status_list.append(status)
     status_list = status_list[-2:]
-    print(status_list)
+    
     if status_list[0] == 1 and status_list[1] == 0:
-        send_email()
+        email_thread = Thread(target=send_email, args=(image_with_object,))
+        email_thread.daemon = True
+        clean_thread = Thread(target=clean_folder)
+        
+
+        email_thread.start()
            
 
     
@@ -56,3 +68,4 @@ while True:
 
 
 video.release()
+clean_thread.start()
