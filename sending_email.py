@@ -3,9 +3,9 @@ import imghdr
 from email.message import EmailMessage
 
 def send_email(image_path):
-    EMAIL_ADDRESS = "navidulislam2002@yahoo.com"
-    PASSWORD = "jrqagbvteagbkdzk"
-    Receiver = "navidulislam2002@yahoo.com"
+    EMAIL_ADDRESS = "navidulislam2002@gmail.com"
+    PASSWORD = "umszkpohctfmcfvn"
+    Receiver = "nibirislam56@gmail.com"
     email_message = EmailMessage()
     email_message["Subject"] = "New movement dectected"
     email_message.set_content("Hey, We just saw a new movement in front of the laptop")
