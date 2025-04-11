@@ -17,7 +17,7 @@ def send_email(image_path):
 
     try :
         debuglevel = True
-        mail = smtplib.SMTP("smtp.mail.yahoo.com", 587)
+        mail = smtplib.SMTP("smtp.gmail.com", 465)
         mail.set_debuglevel(debuglevel)
         mail.starttls()
         mail.login(EMAIL_ADDRESS, PASSWORD)
